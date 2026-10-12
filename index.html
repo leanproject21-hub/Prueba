@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Visor web de diagramas BPMN 2.0 para publicar procesos y consultarlos desde SharePoint.">
+  <title>Visor de procesos | BPMN</title>
+  <link rel="stylesheet" href="https://unpkg.com/bpmn-js/dist/assets/diagram-js.css">
+  <link rel="stylesheet" href="https://unpkg.com/bpmn-js/dist/assets/bpmn-js.css">
+  <link rel="stylesheet" href="https://unpkg.com/bpmn-js/dist/assets/bpmn-font/css/bpmn.css">
+  <style>
+    :root{--navy:#172b4d;--navy2:#203b63;--orange:#f58220;--ink:#1e293b;--muted:#64748b;--line:#e2e8f0;--bg:#f3f5f8;--white:#fff;--green:#16835f;--red:#bd3333}
+    *{box-sizing:border-box}html,body{margin:0;height:100%;font-family:Segoe UI,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+    .app{min-height:100%;display:flex;flex-direction:column}.topbar{background:var(--navy);color:#fff;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:4px solid var(--orange)}
+    .brand{display:flex;align-items:center;gap:12px;min-width:0}.mark{width:38px;height:38px;border-radius:9px;background:var(--orange);display:grid;place-items:center;color:#fff;font-size:22px;font-weight:800}.brand-title{font-weight:700;font-size:18px;letter-spacing:.2px}.brand-subtitle{font-size:12px;color:#d7e0ec;margin-top:3px}.top-meta{font-size:12px;color:#d7e0ec;white-space:nowrap}
+    main{width:100%;max-width:1600px;margin:0 auto;padding:22px 24px 16px;flex:1;display:flex;flex-direction:column;gap:14px}.heading{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}.eyebrow{color:var(--orange);text-transform:uppercase;font-size:11px;font-weight:800;letter-spacing:1.2px}.heading h1{margin:5px 0 4px;font-size:clamp(22px,3vw,30px);font-weight:700;color:var(--navy)}.description{margin:0;color:var(--muted);font-size:14px;line-height:1.5}.status{border:1px solid var(--line);border-radius:999px;padding:7px 11px;background:#fff;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:7px;white-space:nowrap}.dot{width:7px;height:7px;border-radius:50%;background:#94a3b8}.status.ok .dot{background:var(--green)}.status.error .dot{background:var(--red)}
+    .toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px;background:#fff;border:1px solid var(--line);border-radius:12px}.toolgroup{display:flex;gap:5px;align-items:center}.tool-sep{width:1px;height:28px;background:var(--line);margin:0 3px}.btn{border:1px solid #d7dee8;border-radius:8px;background:#fff;color:var(--navy);padding:9px 12px;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:background .12s,border-color .12s}.btn:hover{background:#f3f6fa;border-color:#aebbd0}.btn.primary{background:var(--navy);color:#fff;border-color:var(--navy)}.btn.primary:hover{background:var(--navy2)}.btn.icon{padding:8px 11px;font-size:16px;min-width:38px;justify-content:center}.btn:focus-visible{outline:3px solid #fbbf24;outline-offset:2px}.file-input{display:none}.picker-label{font-size:12px;font-weight:700;color:var(--muted)}.diagram-picker{max-width:min(430px,100%);border:1px solid #d7dee8;border-radius:8px;background:#fff;color:var(--navy);padding:9px 10px;font:600 13px Segoe UI,Arial,sans-serif;min-width:230px}.diagram-picker:focus-visible{outline:3px solid #fbbf24;outline-offset:2px}.tip{margin-left:auto;color:var(--muted);font-size:12px}
+    .viewer-wrap{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 4px 18px rgba(15,23,42,.04);display:flex;flex-direction:column;min-height:420px;flex:1}.viewer-head{padding:11px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px;background:#fff}.viewer-label{font-size:13px;font-weight:700;color:var(--navy);overflow-wrap:anywhere}.viewer-hint{font-size:11px;color:var(--muted)}#canvas{height:min(67vh,760px);min-height:420px;width:100%;background-color:#fff;background-image:radial-gradient(#dce3ec .8px,transparent .8px);background-size:18px 18px;position:relative}#canvas .djs-container{background:transparent}#canvas .djs-palette,#canvas .djs-context-pad{display:none!important}#canvas svg{outline:none}.message{display:none;margin:12px 16px;padding:12px 14px;border-radius:9px;font-size:13px;line-height:1.5;background:#fff8e8;border:1px solid #f5d69a;color:#805315}.message.visible{display:block}.message.error{background:#fff1f1;border-color:#f4c2c2;color:#8f2525}.message.success{background:#eaf8f1;border-color:#bce5d1;color:#126749}.empty-overlay{position:absolute;inset:0;display:none;align-items:center;justify-content:center;text-align:center;padding:26px;background:rgba(255,255,255,.92);z-index:2}.empty-overlay.visible{display:flex}.empty-card{max-width:510px}.empty-icon{font-size:36px;color:var(--orange)}.empty-card h2{margin:9px 0;color:var(--navy);font-size:20px}.empty-card p{font-size:14px;line-height:1.6;color:var(--muted);margin:0 0 16px}.footer{font-size:11px;color:#7b8798;text-align:center;padding:0 8px 14px}.footer a{color:var(--navy)}
+    .fullscreen-mode{position:fixed!important;inset:0!important;z-index:10000!important;background:#fff!important;max-width:none!important;margin:0!important;padding:12px!important;border-radius:0!important}.fullscreen-mode #canvas{height:calc(100vh - 155px)!important;min-height:0}.fullscreen-mode .viewer-wrap{min-height:0}
+    @media(max-width:700px){.topbar{padding:14px 16px}.top-meta{display:none}main{padding:16px 12px}.tip{width:100%;margin-left:0}.viewer-wrap{min-height:360px}#canvas{min-height:360px;height:60vh}.viewer-hint{display:none}}
+  </style>
+</head>
+<body>
+<div class="app" id="app">
+  <header class="topbar">
+    <div class="brand"><div class="mark" aria-hidden="true">B</div><div><div class="brand-title">Visor de procesos</div><div class="brand-subtitle">BPMN 2.0 · Consulta web</div></div></div>
+    <div class="top-meta">REPOSITORIO DE PROCESOS · VISTA DE CONSULTA</div>
+  </header>
+  <main>
+    <section class="heading">
+      <div><div class="eyebrow">Gestión por procesos</div><h1 id="pageTitle">Recepción y Despacho de Envíos de Exportación</h1><p class="description">Visualizá el flujo, ampliá los detalles y recorré el diagrama sin instalar Bizagi.</p></div>
+      <div class="status" id="status"><span class="dot"></span><span id="statusText">Cargando diagrama…</span></div>
+    </section>
+    <div class="toolbar" aria-label="Controles del diagrama">
+      <label for="diagramPicker" class="picker-label">Proceso</label>
+      <select id="diagramPicker" class="diagram-picker" aria-label="Seleccionar proceso">
+        <option value="process.bpmn">Recepción y Despacho de Envíos de Exportación</option>
+        <option value="gestionar-documentacion.bpmn">Subproceso - Gestionar documentación</option>
+        <option value="preparar-empaque-fedex.bpmn">Subproceso - Preparar empaque FedEx</option>
+      </select>
+      <label for="filePicker" class="btn">＋ Abrir otro archivo</label>
+      <input class="file-input" id="filePicker" type="file" accept=".bpmn,.xml,.txt,application/xml,text/xml">
+      <div class="tool-sep"></div>
+      <div class="toolgroup">
+        <button class="btn icon" id="zoomOut" type="button" title="Alejar" aria-label="Alejar">−</button>
+        <button class="btn icon" id="zoomIn" type="button" title="Acercar" aria-label="Acercar">＋</button>
+        <button class="btn" id="fit" type="button" title="Ajustar el diagrama a la pantalla">Ajustar a pantalla</button>
+      </div>
+      <div class="tool-sep"></div>
+      <button class="btn" id="fullscreen" type="button">⛶ Pantalla completa</button>
+      <span class="tip">Usá la rueda del ratón o el panel táctil para acercar y alejar.</span>
+    </div>
+    <section class="viewer-wrap" id="viewerWrap">
+      <div class="viewer-head"><span class="viewer-label" id="diagramLabel">Diagrama BPMN</span><span class="viewer-hint">Solo lectura · Los cambios no se guardan desde este visor</span></div>
+      <div class="message" id="message" role="status"></div>
+      <div id="canvas" aria-label="Diagrama BPMN interactivo">
+        <div class="empty-overlay" id="emptyOverlay"><div class="empty-card"><div class="empty-icon">◇</div><h2>Preparado para mostrar tu proceso</h2><p>Elegí uno de los diagramas exportados desde Bizagi en el selector superior o cargá otro archivo <strong>BPMN 2.0 XML</strong>.</p><label for="filePicker" class="btn primary">Seleccionar XML BPMN</label></div></div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">Visor basado en <a href="https://bpmn.io/toolkit/bpmn-js/" target="_blank" rel="noopener noreferrer">bpmn-js</a>. Incluye el proceso principal y sus dos subprocesos exportados desde Bizagi. Para agregar otros diagramas, subí sus archivos BPMN al repositorio y actualizá el selector.</footer>
+</div>
+<script src="https://unpkg.com/bpmn-js/dist/bpmn-viewer.production.min.js"></script>
+<script>
+(() => {
+  'use strict';
+  const canvas = document.getElementById('canvas');
+  const message = document.getElementById('message');
+  const status = document.getElementById('status');
+  const statusText = document.getElementById('statusText');
+  const picker = document.getElementById('filePicker');
+  const diagramPicker = document.getElementById('diagramPicker');
+  const emptyOverlay = document.getElementById('emptyOverlay');
+  const viewerWrap = document.getElementById('viewerWrap');
+  let viewer = null;
+  let hasDiagram = false;
+
+  function showMessage(text, kind = '') {
+    message.textContent = text;
+    message.className = 'message visible' + (kind ? ' ' + kind : '');
+  }
+  function hideMessage() { message.className = 'message'; message.textContent = ''; }
+  function setStatus(text, kind = '') {
+    statusText.textContent = text;
+    status.className = 'status' + (kind ? ' ' + kind : '');
+  }
+  function showEmpty(show) { emptyOverlay.classList.toggle('visible', show); }
+  function createViewer() {
+    if (viewer) { viewer.destroy(); viewer = null; }
+    viewer = new BpmnJS({ container: '#canvas' });
+  }
+  function validateXml(xml) {
+    const doc = new DOMParser().parseFromString(xml, 'application/xml');
+    if (doc.getElementsByTagName('parsererror').length) throw new Error('El archivo no contiene XML válido o está incompleto.');
+    const root = doc.documentElement;
+    const local = root.localName || root.nodeName.split(':').pop();
+    const ns = root.namespaceURI || '';
+    if (local !== 'definitions' || !ns.includes('BPMN/20100524/MODEL')) {
+      throw new Error('Este archivo no parece ser un diagrama BPMN 2.0. En Bizagi elegí Exportar/Importar → Exportar → BPMN y exportá el diagrama; no exportés los atributos extendidos.');
+    }
+    const diagramCount = doc.getElementsByTagNameNS('http://www.omg.org/spec/BPMN/20100524/DI', 'BPMNDiagram').length;
+    if (!diagramCount) throw new Error('El XML contiene definiciones BPMN, pero no incluye la información visual del diagrama (BPMNDiagram). Volvé a exportarlo desde Bizagi como BPMN 2.0.');
+    return doc;
+  }
+  async function loadXml(xml, filename = 'Diagrama BPMN') {
+    hideMessage();
+    setStatus('Validando archivo…');
+    try {
+      validateXml(xml);
+      createViewer();
+      await viewer.importXML(xml);
+      viewer.get('canvas').zoom('fit-viewport');
+      hasDiagram = true;
+      showEmpty(false);
+      document.getElementById('diagramLabel').textContent = filename;
+      document.getElementById('pageTitle').textContent = filename.replace(/\.(bpmn|xml)$/i, '').replace(/[_-]+/g, ' ');
+      setStatus('Diagrama cargado', 'ok');
+    } catch (err) {
+      if (viewer) { viewer.destroy(); viewer = null; }
+      hasDiagram = false;
+      showEmpty(true);
+      setStatus('No se pudo cargar', 'error');
+      showMessage(err && err.message ? err.message : 'No fue posible interpretar el archivo. Comprobá que sea un BPMN 2.0 XML válido.', 'error');
+    }
+  }
+  picker.addEventListener('change', async (event) => {
+    const file = event.target.files && event.target.files[0];
+    if (!file) return;
+    try { await loadXml(await file.text(), file.name); }
+    catch { setStatus('Error al leer el archivo', 'error'); showMessage('No se pudo leer el archivo seleccionado.', 'error'); }
+    picker.value = '';
+  });
+  function canvasApi() { return viewer && hasDiagram ? viewer.get('canvas') : null; }
+  document.getElementById('zoomIn').addEventListener('click', () => { const c = canvasApi(); if (c) c.zoom(c.zoom() * 1.2); });
+  document.getElementById('zoomOut').addEventListener('click', () => { const c = canvasApi(); if (c) c.zoom(c.zoom() / 1.2); });
+  document.getElementById('fit').addEventListener('click', () => { const c = canvasApi(); if (c) c.zoom('fit-viewport'); });
+  document.getElementById('fullscreen').addEventListener('click', () => {
+    viewerWrap.classList.toggle('fullscreen-mode');
+    document.getElementById('fullscreen').textContent = viewerWrap.classList.contains('fullscreen-mode') ? '⛶ Salir de pantalla completa' : '⛶ Pantalla completa';
+    window.setTimeout(() => { const c = canvasApi(); if (c) c.resized(); if (c) c.zoom('fit-viewport'); }, 120);
+  });
+  window.addEventListener('keydown', event => { if (event.key === 'Escape' && viewerWrap.classList.contains('fullscreen-mode')) { viewerWrap.classList.remove('fullscreen-mode'); document.getElementById('fullscreen').textContent = '⛶ Pantalla completa'; setTimeout(() => { const c = canvasApi(); if (c) { c.resized(); c.zoom('fit-viewport'); } }, 120); } });
+  window.addEventListener('resize', () => { const c = canvasApi(); if (c) c.resized(); });
+
+  // Los tres diagramas exportados se incluyen en el repositorio y pueden abrirse desde el selector.
+  async function loadPublishedDiagram(filename) {
+    try {
+      hideMessage();
+      setStatus('Cargando diagrama…');
+      const response = await fetch('./' + filename, { cache: 'no-store' });
+      if (!response.ok) throw new Error('No se encontró ' + filename + '. Verificá que el archivo esté en la raíz del repositorio.');
+      await loadXml(await response.text(), filename);
+    } catch (err) {
+      showEmpty(true);
+      setStatus('No se pudo cargar', 'error');
+      showMessage(err && err.message ? err.message : 'No se pudo cargar el diagrama publicado.', 'error');
+    }
+  }
+  diagramPicker.addEventListener('change', () => loadPublishedDiagram(diagramPicker.value));
+  loadPublishedDiagram(diagramPicker.value || 'process.bpmn');
+})();
+</script>
+</body>
+</html>
