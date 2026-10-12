@@ -94,9 +94,9 @@
       <span class="tip">Usá la rueda del ratón o el panel táctil para acercar y alejar.</span>
     </div>
     <section class="viewer-wrap" id="viewerWrap">
-      <div class="viewer-head"><span class="viewer-label" id="diagramLabel">Diagrama BPMN</span><span class="viewer-hint">Hacé clic en una actividad para enfocarla y ver su descripción</span></div>
+      <div class="viewer-head"><span class="viewer-label" id="diagramLabel">Diagrama BPMN</span><span class="viewer-hint">Hacé clic en una actividad para ver su descripción</span></div>
       <div class="navigation-bar" id="navigationBar" hidden><button class="btn" id="backToParent" type="button">← Volver al proceso anterior</button><span class="navigation-title" id="navigationTitle">Subproceso</span></div>
-      <div class="click-hint">Hacé clic en una actividad para acercarla y consultar su nombre completo. En los subprocesos (símbolo +), el clic abre el diagrama correspondiente. Usá “Ajustar a pantalla” para volver a ver el flujo completo.</div>
+      <div class="click-hint">Hacé clic en una actividad para consultar su descripción sin cambiar el encuadre. En los subprocesos (símbolo +), el clic abre el diagrama correspondiente. Usá los controles de zoom solo cuando lo necesités.</div>
       <div class="message" id="message" role="status"></div>
       <div id="canvas" aria-label="Diagrama BPMN interactivo">
         <div class="empty-overlay" id="emptyOverlay"><div class="empty-card"><div class="empty-icon">◇</div><h2>Preparado para mostrar tu proceso</h2><p>Elegí uno de los diagramas exportados desde Bizagi en el selector superior o cargá otro archivo <strong>BPMN 2.0 XML</strong>.</p><label for="filePicker" class="btn primary">Seleccionar XML BPMN</label></div></div>
@@ -200,18 +200,6 @@
       }
       title.textContent = bo.name;
     });
-  }
-  function focusElement(element) {
-    if (!viewer || !element || !element.width || !element.height) return;
-    const canvasService = viewer.get('canvas');
-    const rect = canvas.getBoundingClientRect();
-    const aspect = Math.max(1.2, rect.width / Math.max(rect.height, 1));
-    // Encuadra la actividad con margen suficiente para leer su rótulo sin perder el panel de detalle.
-    const height = Math.max(element.height * 3.25, (element.width / aspect) * 3.25, 180);
-    const width = height * aspect;
-    const centerX = element.x + element.width / 2;
-    const centerY = element.y + element.height / 2;
-    canvasService.viewbox({ x: centerX - width * 0.40, y: centerY - height / 2, width, height });
   }
   function validateXml(xml) {
     const doc = new DOMParser().parseFromString(xml, 'application/xml');
@@ -341,9 +329,9 @@
       return;
     }
 
-    focusElement(clicked);
+    // La selección muestra los detalles, pero conserva el encuadre actual del diagrama.
     showDetails(typeLabel(bo.$type), bo.name || 'Elemento sin nombre', getDescription(bo), bo.id);
-    setStatus('Actividad enfocada · detalle disponible', 'ok');
+    setStatus('Actividad seleccionada · detalle disponible', 'ok');
   }
   picker.addEventListener('change', async (event) => {
     const file = event.target.files && event.target.files[0];
