@@ -15,9 +15,52 @@
     .brand{display:flex;align-items:center;gap:12px;min-width:0}.mark{width:38px;height:38px;border-radius:9px;background:var(--orange);display:grid;place-items:center;color:#fff;font-size:22px;font-weight:800}.brand-title{font-weight:700;font-size:18px;letter-spacing:.2px}.brand-subtitle{font-size:12px;color:#d7e0ec;margin-top:3px}.top-meta{font-size:12px;color:#d7e0ec;white-space:nowrap}
     main{width:100%;max-width:1600px;margin:0 auto;padding:22px 24px 16px;flex:1;display:flex;flex-direction:column;gap:14px}.heading{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}.eyebrow{color:var(--orange);text-transform:uppercase;font-size:11px;font-weight:800;letter-spacing:1.2px}.heading h1{margin:5px 0 4px;font-size:clamp(22px,3vw,30px);font-weight:700;color:var(--navy)}.description{margin:0;color:var(--muted);font-size:14px;line-height:1.5}.status{border:1px solid var(--line);border-radius:999px;padding:7px 11px;background:#fff;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:7px;white-space:nowrap}.dot{width:7px;height:7px;border-radius:50%;background:#94a3b8}.status.ok .dot{background:var(--green)}.status.error .dot{background:var(--red)}
     .toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px;background:#fff;border:1px solid var(--line);border-radius:12px}.toolgroup{display:flex;gap:5px;align-items:center}.tool-sep{width:1px;height:28px;background:var(--line);margin:0 3px}.btn{border:1px solid #d7dee8;border-radius:8px;background:#fff;color:var(--navy);padding:9px 12px;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:background .12s,border-color .12s}.btn:hover{background:#f3f6fa;border-color:#aebbd0}.btn.primary{background:var(--navy);color:#fff;border-color:var(--navy)}.btn.primary:hover{background:var(--navy2)}.btn.icon{padding:8px 11px;font-size:16px;min-width:38px;justify-content:center}.btn:focus-visible{outline:3px solid #fbbf24;outline-offset:2px}.file-input{display:none}.picker-label{font-size:12px;font-weight:700;color:var(--muted)}.diagram-picker{max-width:min(430px,100%);border:1px solid #d7dee8;border-radius:8px;background:#fff;color:var(--navy);padding:9px 10px;font:600 13px Segoe UI,Arial,sans-serif;min-width:230px}.diagram-picker:focus-visible{outline:3px solid #fbbf24;outline-offset:2px}.tip{margin-left:auto;color:var(--muted);font-size:12px}
-    .viewer-wrap{position:relative;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 4px 18px rgba(15,23,42,.04);display:flex;flex-direction:column;min-height:420px;flex:1}.viewer-head{padding:11px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px;background:#fff}.viewer-label{font-size:13px;font-weight:700;color:var(--navy);overflow-wrap:anywhere}.viewer-hint{font-size:11px;color:var(--muted)}#canvas{height:min(67vh,760px);min-height:420px;width:100%;background-color:#fff;background-image:radial-gradient(#dce3ec .8px,transparent .8px);background-size:18px 18px;position:relative}#canvas .djs-container{background:transparent}#canvas .djs-palette,#canvas .djs-context-pad{display:none!important}#canvas svg{outline:none}.message{display:none;margin:12px 16px;padding:12px 14px;border-radius:9px;font-size:13px;line-height:1.5;background:#fff8e8;border:1px solid #f5d69a;color:#805315}.message.visible{display:block}.message.error{background:#fff1f1;border-color:#f4c2c2;color:#8f2525}.message.success{background:#eaf8f1;border-color:#bce5d1;color:#126749}.empty-overlay{position:absolute;inset:0;display:none;align-items:center;justify-content:center;text-align:center;padding:26px;background:rgba(255,255,255,.92);z-index:2}.empty-overlay.visible{display:flex}.empty-card{max-width:510px}.empty-icon{font-size:36px;color:var(--orange)}.empty-card h2{margin:9px 0;color:var(--navy);font-size:20px}.empty-card p{font-size:14px;line-height:1.6;color:var(--muted);margin:0 0 16px}.footer{font-size:11px;color:#7b8798;text-align:center;padding:0 8px 14px}.footer a{color:var(--navy)}
-    .navigation-bar{display:flex;align-items:center;gap:12px;padding:9px 14px;background:#f8fafc;border-bottom:1px solid var(--line);font-size:12px;color:var(--muted)}.navigation-bar[hidden]{display:none!important}.navigation-title{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.detail-panel{display:none;position:absolute;z-index:20;top:58px;right:12px;width:min(390px,calc(100% - 24px));max-height:calc(min(67vh,760px) - 75px);overflow:auto;background:#fff;border:1px solid #d8e0ea;border-radius:12px;box-shadow:0 16px 42px rgba(15,23,42,.2)}.detail-panel.visible{display:block}.detail-head{display:flex;align-items:flex-start;gap:12px;padding:16px 16px 12px;border-bottom:1px solid var(--line)}.detail-heading{flex:1;min-width:0}.detail-type{display:inline-block;background:#eaf0f8;color:var(--navy);border-radius:999px;padding:4px 8px;font-size:11px;font-weight:700;margin-bottom:8px}.detail-title{font-size:17px;line-height:1.35;margin:0;color:var(--navy);overflow-wrap:anywhere}.detail-content{padding:15px 16px 18px}.detail-label{font-size:11px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;color:var(--muted);margin:0 0 7px}.detail-description{font-size:14px;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere;margin:0;color:#334155}.detail-id{font-size:11px;color:#94a3b8;margin-top:15px;overflow-wrap:anywhere}.detail-empty{color:var(--muted);font-style:italic}.click-hint{color:var(--muted);font-size:12px;padding:9px 14px;border-bottom:1px solid var(--line);background:#fff}.djs-shape{cursor:pointer}.djs-element.selected-element .djs-visual>:first-child{stroke:#f58220!important;stroke-width:3px!important}.fullscreen-mode{position:fixed!important;inset:0!important;z-index:10000!important;background:#fff!important;max-width:none!important;margin:0!important;padding:12px!important;border-radius:0!important}.fullscreen-mode #canvas{height:calc(100vh - 190px)!important;min-height:0}.fullscreen-mode .viewer-wrap{min-height:0}
-    @media(max-width:700px){.topbar{padding:14px 16px}.top-meta{display:none}main{padding:16px 12px}.tip{width:100%;margin-left:0}.viewer-wrap{min-height:360px}#canvas{min-height:360px;height:60vh}.viewer-hint{display:none}.detail-panel{top:55px;right:8px;width:calc(100% - 16px);max-height:calc(60vh - 55px)}}
+    .viewer-wrap{position:relative;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 4px 18px rgba(15,23,42,.04);display:flex;flex-direction:column;min-height:420px;flex:1}.viewer-head{padding:11px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px;background:#fff}.viewer-label{font-size:13px;font-weight:700;color:var(--navy);overflow-wrap:anywhere}.viewer-hint{font-size:11px;color:var(--muted)}#canvas{height:min(78vh,880px);min-height:520px;width:100%;background-color:#fff;background-image:radial-gradient(#dce3ec .8px,transparent .8px);background-size:18px 18px;position:relative}#canvas .djs-container{background:transparent}#canvas .djs-palette,#canvas .djs-context-pad{display:none!important}#canvas svg{outline:none}.message{display:none;margin:12px 16px;padding:12px 14px;border-radius:9px;font-size:13px;line-height:1.5;background:#fff8e8;border:1px solid #f5d69a;color:#805315}.message.visible{display:block}.message.error{background:#fff1f1;border-color:#f4c2c2;color:#8f2525}.message.success{background:#eaf8f1;border-color:#bce5d1;color:#126749}.empty-overlay{position:absolute;inset:0;display:none;align-items:center;justify-content:center;text-align:center;padding:26px;background:rgba(255,255,255,.92);z-index:2}.empty-overlay.visible{display:flex}.empty-card{max-width:510px}.empty-icon{font-size:36px;color:var(--orange)}.empty-card h2{margin:9px 0;color:var(--navy);font-size:20px}.empty-card p{font-size:14px;line-height:1.6;color:var(--muted);margin:0 0 16px}.footer{font-size:11px;color:#7b8798;text-align:center;padding:0 8px 14px}.footer a{color:var(--navy)}
+    .navigation-bar{display:flex;align-items:center;gap:12px;padding:9px 14px;background:#f8fafc;border-bottom:1px solid var(--line);font-size:12px;color:var(--muted)}.navigation-bar[hidden]{display:none!important}.navigation-title{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.detail-panel{display:none;position:absolute;z-index:20;top:58px;right:12px;width:min(390px,calc(100% - 24px));max-height:calc(min(78vh,880px) - 75px);overflow:auto;background:#fff;border:1px solid #d8e0ea;border-radius:12px;box-shadow:0 16px 42px rgba(15,23,42,.2)}.detail-panel.visible{display:block}.detail-head{display:flex;align-items:flex-start;gap:12px;padding:16px 16px 12px;border-bottom:1px solid var(--line)}.detail-heading{flex:1;min-width:0}.detail-type{display:inline-block;background:#eaf0f8;color:var(--navy);border-radius:999px;padding:4px 8px;font-size:11px;font-weight:700;margin-bottom:8px}.detail-title{font-size:17px;line-height:1.35;margin:0;color:var(--navy);overflow-wrap:anywhere}.detail-content{padding:15px 16px 18px}.detail-label{font-size:11px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;color:var(--muted);margin:0 0 7px}.detail-description{font-size:14px;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere;margin:0;color:#334155}.detail-id{font-size:11px;color:#94a3b8;margin-top:15px;overflow-wrap:anywhere}.detail-empty{color:var(--muted);font-style:italic}.click-hint{color:var(--muted);font-size:12px;padding:9px 14px;border-bottom:1px solid var(--line);background:#fff}.djs-shape{cursor:pointer}.djs-element.selected-element .djs-visual>:first-child{stroke:#f58220!important;stroke-width:3px!important}
+    /* Etiquetas compactas para que los nombres largos no desborden las actividades. El nombre completo sigue en el panel de detalle. */
+    #canvas .djs-element.label-compact .djs-label{font-size:10px!important}
+    #canvas .djs-element.label-tight .djs-label{font-size:8.5px!important}
+    #canvas .djs-element.label-compact .djs-label tspan,#canvas .djs-element.label-tight .djs-label tspan{font-size:inherit!important}
+    #canvas .djs-element .djs-label{pointer-events:all}.fullscreen-mode{position:fixed!important;inset:0!important;z-index:10000!important;background:#fff!important;max-width:none!important;margin:0!important;padding:12px!important;border-radius:0!important}.fullscreen-mode #canvas{height:calc(100vh - 190px)!important;min-height:0}.fullscreen-mode .viewer-wrap{min-height:0}
+    @media(max-width:700px){.topbar{padding:14px 16px}.top-meta{display:none}main{padding:16px 12px}.tip{width:100%;margin-left:0}.viewer-wrap{min-height:360px}#canvas{min-height:420px;height:70vh}.viewer-hint{display:none}.detail-panel{top:55px;right:8px;width:calc(100% - 16px);max-height:calc(70vh - 55px)}}
+
+    /* Modo incrustado para SharePoint: muestra el diagrama como protagonista y conserva interacción. Activar con ?embed=1. */
+    body.embed-mode{overflow:hidden;background:#fff}
+    body.embed-mode .app{height:100vh;min-height:0}
+    body.embed-mode .topbar,
+    body.embed-mode .heading,
+    body.embed-mode .footer,
+    body.embed-mode .click-hint{display:none!important}
+    body.embed-mode main{width:100%;max-width:none;margin:0;padding:0;gap:0;min-height:0;overflow:hidden}
+    body.embed-mode .toolbar{flex:0 0 auto;min-height:38px;padding:4px 8px;border:0;border-bottom:1px solid #e2e8f0;border-radius:0;box-shadow:none;gap:6px}
+    body.embed-mode .toolbar #diagramPicker,
+    body.embed-mode .toolbar label[for="diagramPicker"],
+    body.embed-mode .toolbar label[for="filePicker"],
+    body.embed-mode .toolbar #filePicker,
+    body.embed-mode .toolbar .tool-sep,
+    body.embed-mode .toolbar .tip{display:none!important}
+    body.embed-mode .toolbar .btn{padding:5px 9px;font-size:12px;border-radius:6px}
+    body.embed-mode .toolbar .btn.icon{min-width:30px;padding:4px 8px;font-size:15px}
+    body.embed-mode .viewer-wrap{flex:1;min-height:0;border:0;border-radius:0;box-shadow:none;overflow:hidden}
+    body.embed-mode .viewer-head{flex:0 0 auto;min-height:30px;padding:5px 10px;border-bottom:1px solid #edf0f4}
+    body.embed-mode .viewer-label{font-size:12px}
+    body.embed-mode .viewer-hint{font-size:10px}
+    body.embed-mode .navigation-bar{flex:0 0 auto;padding:5px 8px;font-size:11px}
+    body.embed-mode .navigation-bar .btn{padding:5px 8px;font-size:11px}
+    body.embed-mode #canvas{flex:1 1 auto;width:100%;height:auto;min-height:0;background-size:16px 16px}
+    body.embed-mode .detail-panel{top:38px;right:8px;width:min(360px,calc(100% - 16px));max-height:calc(100% - 48px);border-radius:9px}
+    body.embed-mode .detail-head{padding:12px 12px 9px}
+    body.embed-mode .detail-title{font-size:15px}
+    body.embed-mode .detail-content{padding:11px 12px 14px}
+    body.embed-mode .detail-description{font-size:13px;line-height:1.55}
+    body.embed-mode .message{flex:0 0 auto;margin:6px 8px;padding:8px 10px}
+    body.embed-mode .empty-overlay{position:absolute}
+    @media(max-width:700px){
+      body.embed-mode .toolbar{padding:3px 5px;min-height:34px}
+      body.embed-mode .toolbar .btn{padding:4px 7px}
+      body.embed-mode .viewer-hint{display:none}
+      body.embed-mode .detail-panel{top:34px;max-height:calc(100% - 40px)}
+    }
   </style>
 </head>
 <body>
@@ -51,9 +94,9 @@
       <span class="tip">Usá la rueda del ratón o el panel táctil para acercar y alejar.</span>
     </div>
     <section class="viewer-wrap" id="viewerWrap">
-      <div class="viewer-head"><span class="viewer-label" id="diagramLabel">Diagrama BPMN</span><span class="viewer-hint">Hacé clic en una actividad para ver su descripción</span></div>
+      <div class="viewer-head"><span class="viewer-label" id="diagramLabel">Diagrama BPMN</span><span class="viewer-hint">Hacé clic en una actividad para enfocarla y ver su descripción</span></div>
       <div class="navigation-bar" id="navigationBar" hidden><button class="btn" id="backToParent" type="button">← Volver al proceso anterior</button><span class="navigation-title" id="navigationTitle">Subproceso</span></div>
-      <div class="click-hint">Seleccioná una actividad para consultar su descripción. Hacé clic en una actividad de subproceso (con símbolo +) para abrir el diagrama correspondiente.</div>
+      <div class="click-hint">Hacé clic en una actividad para acercarla y consultar su nombre completo. En los subprocesos (símbolo +), el clic abre el diagrama correspondiente. Usá “Ajustar a pantalla” para volver a ver el flujo completo.</div>
       <div class="message" id="message" role="status"></div>
       <div id="canvas" aria-label="Diagrama BPMN interactivo">
         <div class="empty-overlay" id="emptyOverlay"><div class="empty-card"><div class="empty-icon">◇</div><h2>Preparado para mostrar tu proceso</h2><p>Elegí uno de los diagramas exportados desde Bizagi en el selector superior o cargá otro archivo <strong>BPMN 2.0 XML</strong>.</p><label for="filePicker" class="btn primary">Seleccionar XML BPMN</label></div></div>
@@ -85,6 +128,8 @@
   const navigationBar = document.getElementById('navigationBar');
   const navigationTitle = document.getElementById('navigationTitle');
   const BPMN_MODEL_NS = 'http://www.omg.org/spec/BPMN/20100524/MODEL';
+  const embedMode = new URLSearchParams(window.location.search).get('embed') === '1';
+  if (embedMode) document.body.classList.add('embed-mode');
   const subprocessFiles = ['gestionar-documentacion.bpmn', 'preparar-empaque-fedex.bpmn'];
   const historyStack = [];
   let viewer = null;
@@ -116,7 +161,12 @@
     detailPanel.classList.add('visible');
   }
   function friendlyName(filename) {
-    return (filename || 'Diagrama BPMN').replace(/\.(bpmn|xml)$/i, '').replace(/[_-]+/g, ' ');
+    const names = {
+      'process.bpmn': 'Recepción y Despacho de Envíos de Exportación',
+      'gestionar-documentacion.bpmn': 'Subproceso - Gestionar documentación',
+      'preparar-empaque-fedex.bpmn': 'Subproceso - Preparar empaque FedEx'
+    };
+    return names[filename] || (filename || 'Diagrama BPMN').replace(/\.(bpmn|xml)$/i, '').replace(/[_-]+/g, ' ');
   }
   function updateNavigation() {
     navigationBar.hidden = historyStack.length === 0;
@@ -126,6 +176,30 @@
     if (viewer) { viewer.destroy(); viewer = null; }
     viewer = new BpmnJS({ container: '#canvas' });
     viewer.on('element.click', handleElementClick);
+  }
+  function applyLabelFit() {
+    if (!viewer) return;
+    const registry = viewer.get('elementRegistry');
+    const svgNS = 'http://www.w3.org/2000/svg';
+    registry.getAll().forEach(element => {
+      const bo = element.businessObject;
+      if (!bo || !bo.name || isNonInteractiveConnection(bo.$type)) return;
+      // La compactación visual solo se aplica a actividades y subprocesos, no a nombres de compuertas/eventos.
+      const isActivity = /Task$|CallActivity$|SubProcess$/.test(bo.$type || '');
+      if (!isActivity) return;
+      const gfx = registry.getGraphics(element);
+      if (!gfx) return;
+      gfx.classList.remove('label-compact', 'label-tight');
+      if (bo.name.length > 40) gfx.classList.add('label-tight');
+      else if (bo.name.length > 27) gfx.classList.add('label-compact');
+      // Tooltip nativo: el texto completo se consulta aun cuando el rótulo esté compactado.
+      let title = gfx.querySelector(':scope > title');
+      if (!title) {
+        title = document.createElementNS(svgNS, 'title');
+        gfx.insertBefore(title, gfx.firstChild);
+      }
+      title.textContent = bo.name;
+    });
   }
   function validateXml(xml) {
     const doc = new DOMParser().parseFromString(xml, 'application/xml');
@@ -178,6 +252,7 @@
       validateXml(xml);
       createViewer();
       await viewer.importXML(xml);
+      applyLabelFit();
       viewer.get('canvas').zoom('fit-viewport');
       hasDiagram = true;
       currentXml = xml;
@@ -254,7 +329,9 @@
       return;
     }
 
+    // La selección solo resalta la actividad y muestra su descripción; no cambia el zoom ni el encuadre.
     showDetails(typeLabel(bo.$type), bo.name || 'Elemento sin nombre', getDescription(bo), bo.id);
+    setStatus('Actividad seleccionada · detalle disponible', 'ok');
   }
   picker.addEventListener('change', async (event) => {
     const file = event.target.files && event.target.files[0];
@@ -300,6 +377,8 @@
     }
   });
   window.addEventListener('resize', () => { const c = canvasApi(); if (c) c.resized(); });
+  // En modo incrustado, asegurar que el diagrama use el tamaño real del iframe tras la carga.
+  window.addEventListener('load', () => { window.setTimeout(() => { const c = canvasApi(); if (c) { c.resized(); c.zoom('fit-viewport'); } }, 160); });
 
   async function loadPublishedDiagram(filename) {
     try {
@@ -332,3 +411,4 @@
 </script>
 </body>
 </html>
+
