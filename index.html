@@ -106,11 +106,11 @@
     <div class="toolbar" aria-label="Controles del diagrama">
       <label for="diagramPicker" class="picker-label">Proceso</label>
       <select id="diagramPicker" class="diagram-picker" aria-label="Seleccionar proceso">
-        <option value="process.bpmn">Gestión integral de exportación de carga</option>
-        <option value="gestionar-documentacion.bpmn">Subproceso - Gestionar incidencia documental de carga</option>
-        <option value="preparar-empaque-fedex.bpmn">Subproceso - Gestionar registros FedEx y documentación aduanal</option>
-        <option value="preparar-empaque-fedex.bpmn">Subproceso - Gestionar seguimiento a la carga exportada</option>
-        <option value="preparar-empaque-fedex.bpmn">Subproceso - Registrar carga y generar manifiestos en PAVEX</option>
+        <option value="Gestión integral de exportación de carga.bpmn">Gestión integral de exportación de carga</option>
+        <option value="Gestionar incidencia documental de carga.bpmn">Subproceso - Gestionar incidencia documental de carga</option>
+        <option value="Gestionar registros FedEx y documentación aduanal.bpmn">Subproceso - Gestionar registros FedEx y documentación aduanal</option>
+        <option value="Gestionar seguimiento a la carga exportada.bpmn">Subproceso - Gestionar seguimiento a la carga exportada</option>
+        <option value="Registrar carga y generar manifiestos en PAVEX.bpmn">Subproceso - Registrar carga y generar manifiestos en PAVEX</option>
       </select>
       <label for="filePicker" class="btn">＋ Abrir otro archivo</label>
       <input class="file-input" id="filePicker" type="file" accept=".bpmn,.xml,.txt,application/xml,text/xml">
@@ -141,7 +141,7 @@
       </aside>
     </section>
   </main>
-  <footer class="footer">Visor basado en <a href="https://bpmn.io/toolkit/bpmn-js/" target="_blank" rel="noopener noreferrer">bpmn-js</a>. Incluye el proceso principal y sus dos subprocesos exportados desde Bizagi. Para agregar otros diagramas, subí sus archivos BPMN al repositorio y actualizá el selector.</footer>
+  <footer class="footer">Visor basado en <a href="https://bpmn.io/toolkit/bpmn-js/" target="_blank" rel="noopener noreferrer">bpmn-js</a>. Incluye el proceso principal y sus cuatro subprocesos exportados desde Bizagi.</footer>
 </div>
 <script src="https://unpkg.com/bpmn-js/dist/bpmn-viewer.production.min.js"></script>
 <script>
@@ -161,7 +161,12 @@
   const BPMN_MODEL_NS = 'http://www.omg.org/spec/BPMN/20100524/MODEL';
   const embedMode = new URLSearchParams(window.location.search).get('embed') === '1';
   if (embedMode) document.body.classList.add('embed-mode');
-  const subprocessFiles = ['gestionar-documentacion.bpmn', 'preparar-empaque-fedex.bpmn'];
+  const subprocessFiles = [
+    'Gestionar incidencia documental de carga.bpmn',
+    'Gestionar registros FedEx y documentación aduanal.bpmn',
+    'Gestionar seguimiento a la carga exportada.bpmn',
+    'Registrar carga y generar manifiestos en PAVEX.bpmn'
+  ];
   const historyStack = [];
   let viewer = null;
   let hasDiagram = false;
@@ -193,9 +198,11 @@
   }
   function friendlyName(filename) {
     const names = {
-      'process.bpmn': 'Recepción y Despacho de Envíos de Exportación',
-      'gestionar-documentacion.bpmn': 'Subproceso - Gestionar documentación',
-      'preparar-empaque-fedex.bpmn': 'Subproceso - Preparar empaque FedEx'
+      'Gestión integral de exportación de carga.bpmn': 'Gestión integral de exportación de carga',
+      'Gestionar incidencia documental de carga.bpmn': 'Gestionar incidencia documental de carga',
+      'Gestionar registros FedEx y documentación aduanal.bpmn': 'Gestionar registros FedEx y documentación aduanal',
+      'Gestionar seguimiento a la carga exportada.bpmn': 'Gestionar seguimiento a la carga exportada',
+      'Registrar carga y generar manifiestos en PAVEX.bpmn': 'Registrar carga y generar manifiestos en PAVEX'
     };
     return names[filename] || (filename || 'Diagrama BPMN').replace(/\.(bpmn|xml)$/i, '').replace(/[_-]+/g, ' ');
   }
@@ -459,7 +466,7 @@
     const loaded = await loadPublishedDiagram(diagramPicker.value);
     if (loaded) updateNavigation();
   });
-  loadPublishedDiagram(diagramPicker.value || 'process.bpmn');
+  loadPublishedDiagram(diagramPicker.value || 'Gestión integral de exportación de carga.bpmn');
 })();
 </script>
 </body>
